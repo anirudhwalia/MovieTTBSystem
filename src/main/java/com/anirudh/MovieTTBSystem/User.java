@@ -1,5 +1,7 @@
 package com.anirudh.MovieTTBSystem.Model;
 
+import org.hibernate.mapping.Join;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,18 +9,19 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Phone")
+    @Column(name = "phone")
     private String phone;
     @Column(name = "name")
     private String name;
-    @OneToMany(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "ticketId")
-    private Ticket ticket;
 
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "ticket_id")
+    private Ticket ticket;
+    User(){
+    }
      User(String phone, String name, Ticket ticket) {
-        this.name = name;
-        this.phone = phone;
+         this.phone = phone;
+         this.name = name;
         this.ticket = ticket;
     }
 
