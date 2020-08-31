@@ -7,5 +7,6 @@ import java.time.LocalTime;
 import java.util.List;
 
 public interface TicketRepository extends JpaRepository<Ticket, Integer> {
-        List<Ticket> findByTiming(LocalTime timing);
+        List<Ticket> findAllByStartTime(LocalTime StartTime);
+
 }
